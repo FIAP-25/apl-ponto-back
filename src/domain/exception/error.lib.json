@@ -1,0 +1,6 @@
+{
+    "body-vazio": {
+        "mensagem": "Parâmetros inválidos",
+        "mensagemDetalhe": "Os parâmetros fornecidos são inválidos."
+    }    
+}
