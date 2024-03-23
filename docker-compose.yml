@@ -1,0 +1,32 @@
+version: '3'
+
+networks:
+    mynetwork:
+        name: mynetwork
+
+services:
+    mongo_producao:
+        image: mongo
+        command: mongod --port 27018
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: example
+        ports:
+            - 27018:27018
+        networks:
+            - mynetwork
+        container_name: mongo_producao
+
+    node_producao:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: always
+        container_name: node_producao
+        networks:
+            - mynetwork
+        ports:
+            - '5000:5000'
+        depends_on:
+            - mongo_producao
