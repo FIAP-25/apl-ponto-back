@@ -1,3 +1,4 @@
+import { AutenticacaoGuard } from '@/application/guard/autenticacao.guard';
 import { ok } from '@/application/helper/http.helper';
 import { IPontoUseCase } from '@/domain/contract/usecase/ponto.interface';
 import { MarcarPontoInput } from '@/infrastructure/dto/ponto/marcarPonto.dto';
@@ -6,6 +7,7 @@ import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 
 @ApiTags('Ponto Eletrônico')
+@ApiBearerAuth()
 @ApiBearerAuth()
 @Controller('api/ponto-eletronico')
 export class PontoController {
