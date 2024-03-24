@@ -17,8 +17,8 @@ export class PontoController {
     async registrarPonto(@Body() body: MarcarPontoInput, @Res() res: Response): Promise<any> {
         if (body) {
             const registroPonto = await this.pontoUseCase.marcarPonto(body, body.matricula);
-            return ok(registroPonto, res);
+            return registroPonto;
         }
-        return unauthorized(res);
+        return null;
     }
 }
