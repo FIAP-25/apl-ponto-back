@@ -10,9 +10,7 @@ export class PontoUseCase implements IPontoUseCase {
     constructor(private _pontoRepository: IPontoRepository) {}
     async marcarPonto(input: MarcarPontoInput): Promise<MarcarPontoOutput> {
         const ponto: Ponto = mapper.map(input, MarcarPontoInput, Ponto);
-
         const pontoSalvo = await this._pontoRepository.save(ponto);
-
         return mapper.map(pontoSalvo, Ponto, MarcarPontoOutput);
     }
 }
