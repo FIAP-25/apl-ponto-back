@@ -1,7 +1,7 @@
 import { IPontoUseCase } from '@/domain/contract/usecase/ponto.interface';
 import { MarcarPontoInput, MarcarPontoOutput } from '@/infrastructure/dto/ponto/marcarPonto.dto';
 import { Test, TestingModule } from '@nestjs/testing';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { PontoController } from './ponto.controller';
 
 describe('PontoController', () => {
@@ -38,7 +38,12 @@ describe('PontoController', () => {
             json: jest.fn()
         } as unknown as Response;
 
-        await controller.cadastrarProducao(input, response);
+        const request = {
+            status: jest.fn().mockReturnThis(),
+            json: jest.fn()
+        } as unknown as Request;
+
+        await controller.registrarPonto(input, response, request);
 
         expect(response.status).toHaveBeenCalledWith(200);
         expect(response.json).toHaveBeenCalledWith({ id: expectedOutput.protocolo });

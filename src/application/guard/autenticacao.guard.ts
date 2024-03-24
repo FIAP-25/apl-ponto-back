@@ -19,7 +19,7 @@ export class AutenticacaoGuard implements CanActivate {
                 secret: process.env.JWT_SECRET
             });
 
-            request.matricula = payload;
+            request.matricula = payload.matricula;
         } catch {
             throw new UnauthorizedException();
         }
