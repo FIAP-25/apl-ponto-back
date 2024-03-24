@@ -43,7 +43,7 @@ describe('PontoController', () => {
             json: jest.fn()
         } as unknown as Request;
 
-        await controller.registrarPonto(input, response, request);
+        await controller.registrarPonto(input, response);
 
         expect(response.status).toHaveBeenCalledWith(200);
         expect(response.json).toHaveBeenCalledWith({ id: expectedOutput.protocolo });
