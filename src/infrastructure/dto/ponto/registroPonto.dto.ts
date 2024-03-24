@@ -2,6 +2,14 @@ import { AutoMap } from '@automapper/classes';
 
 export class RegistroPontoOutput {
     @AutoMap()
+    data: Date;
+
+    @AutoMap()
+    registros: RegistroDetalhesOutput[];
+}
+
+export class RegistroDetalhesOutput {
+    @AutoMap()
     id: string;
 
     @AutoMap()

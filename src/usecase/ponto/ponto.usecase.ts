@@ -3,6 +3,7 @@ import { IPontoRepository } from '@/domain/contract/repository/ponto.interface';
 import { IPontoUseCase } from '@/domain/contract/usecase/ponto.interface';
 import { Ponto } from '@/domain/entity/ponto.model';
 import { MarcarPontoInput, MarcarPontoOutput } from '@/infrastructure/dto/ponto/marcarPonto.dto';
+import { RegistroPontoOutput } from '@/infrastructure/dto/ponto/registroPonto.dto';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
@@ -16,5 +17,13 @@ export class PontoUseCase implements IPontoUseCase {
 
         const pontoSalvo = await this._pontoRepository.save(ponto);
         return mapper.map(pontoSalvo, Ponto, MarcarPontoOutput);
+    }
+
+    async obterRegistrosPorMes(mes: number, matricula: string): Promise<RegistroPontoOutput[]> {
+        const registros = await this._pontoRepository.findByMonth(mes, matricula);
+
+        const resultado = new RegistroPontoOutput();
+
+        return [resultado];
     }
 }
