@@ -20,10 +20,18 @@ export class PontoRepository implements IPontoRepository {
     }
 
     async findById(id: string): Promise<Ponto> {
-        // const pontoId = new ObjectId(id);
-
         const ponto = await this.pontoRepositoy.findOneBy({ _id: new ObjectId(id) });
         return mapper.map(ponto, PontoEntity, Ponto);
+    }
+
+    async findByDate(data: Date, matricula: string): Promise<Ponto[]> {
+        const ponto = await this.pontoRepositoy.findBy({ dataRegistro: data, matricula: matricula });
+        return mapper.mapArray(ponto, PontoEntity, Ponto);
+    }
+
+    async findByMonth(mes: number, matricula: string): Promise<Ponto[]> {
+        const ponto = await this.pontoRepositoy.createQueryBuilder().where('MONTH(registry.dataRegistro) = :month AND registry.matricula = :matricula', { month: mes, matricula: matricula }).getMany();
+        return mapper.mapArray(ponto, PontoEntity, Ponto);
     }
 
     async save(ponto: Ponto): Promise<Ponto> {

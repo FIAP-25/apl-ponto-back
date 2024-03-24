@@ -1,4 +1,4 @@
-import { ok } from '@/application/helper/http.helper';
+import { ok, unauthorized } from '@/application/helper/http.helper';
 import { IAutenticacaoUseCase } from '@/domain/contract/usecase/autenticacao.interface';
 import { AutenticarInput } from '@/infrastructure/dto/autenticacao/autenticar.dto';
 import { Body, Controller, Post, Res } from '@nestjs/common';
@@ -15,6 +15,10 @@ export class AutenticacaoController {
     async autenticar(@Body() body: AutenticarInput, @Res() res: Response): Promise<any> {
         const token = await this._autenticacaoUseCase.autenticarUsuario(body);
 
-        return ok(token, res);
+        if (token) {
+            return ok(token, res);
+        }
+
+        return unauthorized(res);
     }
 }

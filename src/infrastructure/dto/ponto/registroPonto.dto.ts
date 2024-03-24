@@ -1,17 +1,6 @@
 import { AutoMap } from '@automapper/classes';
-import { ApiProperty } from '@nestjs/swagger';
 
-export class MarcarPontoInput {
-    @AutoMap()
-    @ApiProperty({ required: true })
-    latitude: number;
-
-    @AutoMap()
-    @ApiProperty({ required: true })
-    longitude: number;
-}
-
-export class MarcarPontoOutput {
+export class RegistroPontoOutput {
     @AutoMap()
     id: string;
 
@@ -29,4 +18,7 @@ export class MarcarPontoOutput {
 
     @AutoMap()
     dataRegistro: Date;
+
+    @AutoMap()
+    tipoMarcacao: 'Entrada' | 'Saida';
 }
