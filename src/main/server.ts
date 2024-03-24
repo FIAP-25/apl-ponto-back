@@ -24,8 +24,9 @@ async function bootstrap(): Promise<void> {
             queue: 'ponto-queue',
             queueOptions: {
                 durable: false
-            }
-        }
+            },
+            
+        },
     });
 
     const httpAdapter = app.get(HttpAdapterHost);
