@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
     imports: [
         TypeOrmModule.forRoot({
-            // url: 'mongodb://root:example@mongo:27017/fiap?authSource=admin',
+            // url: 'mongodb://root:example@127.0.0.1:27018/fiap?authSource=admin',
             type: 'mongodb',
             host: process.env.DATABASE_HOST,
             username: process.env.DATABASE_USERNAME,
