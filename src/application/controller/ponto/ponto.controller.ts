@@ -2,7 +2,7 @@ import { AutenticacaoGuard } from '@/application/guard/autenticacao.guard';
 import { ok, unauthorized } from '@/application/helper/http.helper';
 import { IPontoUseCase } from '@/domain/contract/usecase/ponto.interface';
 import { MarcarPontoInput } from '@/infrastructure/dto/ponto/marcarPonto.dto';
-import { Body, Controller, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Request, Response } from 'express';
 

@@ -8,6 +8,7 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class PontoUseCase implements IPontoUseCase {
     constructor(private _pontoRepository: IPontoRepository) {}
+
     async marcarPonto(input: MarcarPontoInput, matricula: string): Promise<MarcarPontoOutput> {
         console.log('Entrou:', input, matricula);
         const ponto: Ponto = mapper.map(input, MarcarPontoInput, Ponto);
