@@ -1,4 +1,3 @@
-import { AutenticacaoGuard } from '@/application/guard/autenticacao.guard';
 import { ok } from '@/application/helper/http.helper';
 import { IPontoUseCase } from '@/domain/contract/usecase/ponto.interface';
 import { MarcarPontoInput } from '@/infrastructure/dto/ponto/marcarPonto.dto';
