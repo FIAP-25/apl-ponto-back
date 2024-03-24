@@ -17,6 +17,9 @@ export class MarcarPontoInput {
 
 export class MarcarPontoOutput {
     @AutoMap()
+    id: string;
+
+    @AutoMap()
     protocolo: string;
 
     @AutoMap()

@@ -1,9 +1,9 @@
-import { Column, CreateDateColumn, Entity, ObjectIdColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ObjectIdColumn, UpdateDateColumn, ObjectId } from 'typeorm';
 
 @Entity('ponto-eletronico')
 export class PontoEntity {
     @ObjectIdColumn()
-    id: string;
+    _id: ObjectId;
 
     @Column()
     matricula: string;

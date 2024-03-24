@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class Ponto {
     @AutoMap()
-    id: string;
+    _id: string;
 
     @AutoMap()
     @ApiProperty({ required: true })

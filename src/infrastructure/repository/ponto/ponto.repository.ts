@@ -4,6 +4,7 @@ import { Ponto } from '@/domain/entity/ponto.model';
 import { PontoEntity } from '@/infrastructure/entity/ponto.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ObjectId } from 'typeorm/driver/mongodb/bson.typings';
 import { Repository } from 'typeorm/repository/Repository';
 
 @Injectable()
@@ -19,8 +20,10 @@ export class PontoRepository implements IPontoRepository {
     }
 
     async findById(id: string): Promise<Ponto> {
-        const pedido = await this.pontoRepositoy.findOneBy({ id: id });
-        return mapper.map(pedido, PontoEntity, Ponto);
+        // const pontoId = new ObjectId(id);
+
+        const ponto = await this.pontoRepositoy.findOneBy({ _id: new ObjectId(id) });
+        return mapper.map(ponto, PontoEntity, Ponto);
     }
 
     async save(ponto: Ponto): Promise<Ponto> {

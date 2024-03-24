@@ -24,6 +24,7 @@ describe('PontoController', () => {
     it('deve registrar uma marcação de ponto', async () => {
         const input: MarcarPontoInput = new MarcarPontoInput();
         const expectedOutput: MarcarPontoOutput = {
+            id: 'sddf54das5',
             protocolo: '123',
             matricula: '441898',
             latitude: 0,
