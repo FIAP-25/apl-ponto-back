@@ -1,5 +1,5 @@
 /* eslint-disable import/first */
-require('dotenv').config();
+import 'dotenv/config';
 
 import { ExceptionInterceptor } from '@/application/interceptor/exception.interceptor';
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
@@ -20,7 +20,8 @@ async function bootstrap(): Promise<void> {
     const httpAdapter = app.get(HttpAdapterHost);
     app.useGlobalFilters(new ExceptionInterceptor(httpAdapter));
 
-    const config = new DocumentBuilder().setTitle('FIAP - 25 API').setDescription('Documentação API.').setVersion('2.0.0').build();
+    const config = new DocumentBuilder().setTitle('FIAP - 25 API').setDescription('Documentação API.').setVersion('2.0.0').addBearerAuth().build();
+
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('api', app, document);
 
