@@ -10,10 +10,10 @@ import { Response } from 'express';
 export class RelatorioController {
     constructor(private pontoUseCase: IPontoUseCase) {}
 
-    @Get('registros/espelho/:ano/:mes')
+    @Get('registros/:matricula/espelho/:ano/:mes')
     @ApiOperation({ summary: 'Ontém o espelho do ponto de um determinado mês' })
-    async obterEspelhoPonto(@Param('mes') mes: number, @Param('ano') ano: number, @Res() res: Response): Promise<any> {
-        const espelho = await this.pontoUseCase.obterEspelhoPorMesEAno(mes, ano, '441898');
+    async obterEspelhoPonto(@Param('matricula') matricula: string, @Param('mes') mes: number, @Param('ano') ano: number, @Res() res: Response): Promise<any> {
+        const espelho = await this.pontoUseCase.obterEspelhoPorMesEAno(mes, ano, matricula);
         return ok(espelho, res);
     }
 }

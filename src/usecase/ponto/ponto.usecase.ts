@@ -3,7 +3,7 @@ import { IPontoRepository } from '@/domain/contract/repository/ponto.interface';
 import { IPontoUseCase } from '@/domain/contract/usecase/ponto.interface';
 import { Ponto } from '@/domain/entity/ponto.model';
 import { MarcarPontoInput, MarcarPontoOutput } from '@/infrastructure/dto/ponto/marcarPonto.dto';
-import { RegistroDetalhesOutput, RegistroPontoOutput } from '@/infrastructure/dto/ponto/registroPonto.dto';
+import { RegistroPontoOutput } from '@/infrastructure/dto/ponto/registroPonto.dto';
 import { Injectable } from '@nestjs/common';
 import dayjs from 'dayjs';
 
