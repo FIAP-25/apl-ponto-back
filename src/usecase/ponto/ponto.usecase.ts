@@ -19,16 +19,27 @@ export class PontoUseCase implements IPontoUseCase {
         return mapper.map(pontoSalvo, Ponto, MarcarPontoOutput);
     }
 
-    async obterRegistrosPorMes(mes: number, ano: number, matricula: string): Promise<RegistroPontoOutput[]> {
+    async obterEspelhoPorMesEAno(mes: number, ano: number, matricula: string): Promise<RegistroPontoOutput[]> {
         const diaInicial = 1;
-        const diaFinal = dayjs().month(mes).endOf('month').date();
+        const diaFinal = dayjs()
+            .month(mes - 1)
+            .endOf('month')
+            .date();
 
         const resultado: RegistroPontoOutput[] = [];
 
         for (let i = diaInicial; i <= diaFinal; i++) {
             const dados = {
-                data: dayjs().date(i).month(mes).year(ano).toDate(),
-                registros: mapper.mapArray(await this._pontoRepository.findByDate(i, mes, ano, matricula), Ponto, RegistroDetalhesOutput)
+                data: dayjs()
+                    .date(i)
+                    .month(mes - 1)
+                    .year(ano)
+                    .hour(0)
+                    .minute(0)
+                    .second(0)
+                    .millisecond(0)
+                    .toDate(),
+                registros: (await this._pontoRepository.find()).filter((x) => Number(x.diaRegistro) === Number(i) && Number(x.mesRegistro) === Number(mes) && Number(x.anoRegistro) === Number(ano) && x.matricula === matricula)
             };
 
             resultado.push(dados);

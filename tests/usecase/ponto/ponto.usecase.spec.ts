@@ -17,7 +17,6 @@ describe('PontoUseCase', () => {
         mockPontoRepository = {
             find: jest.fn(),
             findById: jest.fn(),
-            findByDate: jest.fn(),
             save: jest.fn(),
             removeById: jest.fn()
         };

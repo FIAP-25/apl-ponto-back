@@ -11,7 +11,7 @@ describe('PontoController', () => {
     beforeEach(async () => {
         mockPontoUseCase = {
             marcarPonto: jest.fn(),
-            obterRegistrosPorMes: jest.fn()
+            obterEspelhoPorMesEAno: jest.fn()
         };
 
         const module: TestingModule = await Test.createTestingModule({

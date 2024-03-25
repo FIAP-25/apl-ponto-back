@@ -5,7 +5,7 @@ export class RegistroPontoOutput {
     data: Date;
 
     @AutoMap()
-    registros: RegistroDetalhesOutput[];
+    registros: any[];
 }
 
 export class RegistroDetalhesOutput {

@@ -1,4 +1,3 @@
-import { ok, unauthorized } from '@/application/helper/http.helper';
 import { IPontoUseCase } from '@/domain/contract/usecase/ponto.interface';
 import { MarcarPontoInput } from '@/infrastructure/dto/ponto/marcarPonto.dto';
 import { Body, Controller, Post, Res } from '@nestjs/common';
@@ -18,11 +17,7 @@ export class PontoController {
         if (body) {
             const registroPonto = await this.pontoUseCase.marcarPonto(body, body.matricula);
             return registroPonto;
-
-            //return ok(registroPonto, res);
         }
         return null;
-
-        //return unauthorized(res);
     }
 }

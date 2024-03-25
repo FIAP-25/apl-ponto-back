@@ -1,7 +1,9 @@
+import { ok } from '@/application/helper/http.helper';
 import { IPontoUseCase } from '@/domain/contract/usecase/ponto.interface';
-import { MarcarPontoInput } from '@/infrastructure/dto/ponto/marcarPonto.dto';
-import { Body, Controller, Get, Param, Res } from '@nestjs/common';
+import { Controller, Get, Param, Res } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+
+import { Response } from 'express';
 
 @ApiTags('Relatórios')
 @Controller('api/relatorios')
@@ -11,7 +13,7 @@ export class RelatorioController {
     @Get('registros/espelho/:ano/:mes')
     @ApiOperation({ summary: 'Ontém o espelho do ponto de um determinado mês' })
     async obterEspelhoPonto(@Param('mes') mes: number, @Param('ano') ano: number, @Res() res: Response): Promise<any> {
-        const registroPonto = await this.pontoUseCase.obterRegistrosPorMes(mes, ano, '441898');
-        return registroPonto;
+        const espelho = await this.pontoUseCase.obterEspelhoPorMesEAno(mes, ano, '441898');
+        return ok(espelho, res);
     }
 }

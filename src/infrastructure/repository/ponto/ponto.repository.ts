@@ -24,11 +24,6 @@ export class PontoRepository implements IPontoRepository {
         return mapper.map(ponto, PontoEntity, Ponto);
     }
 
-    async findByDate(dia: number, mes: number, ano: number, matricula: string): Promise<Ponto[]> {
-        const ponto = await this.pontoRepositoy.findBy({ diaRegistro: dia });
-        return mapper.mapArray(ponto, PontoEntity, Ponto);
-    }
-
     async save(ponto: Ponto): Promise<Ponto> {
         return await this.pontoRepositoy.save(ponto);
     }
