@@ -39,7 +39,11 @@ export class PontoUseCase implements IPontoUseCase {
                     .second(0)
                     .millisecond(0)
                     .toDate(),
-                registros: (await this._pontoRepository.find()).filter((x) => Number(x.diaRegistro) === Number(i) && Number(x.mesRegistro) === Number(mes) && Number(x.anoRegistro) === Number(ano) && x.matricula === matricula)
+                registros: (await this._pontoRepository.find())
+                    .filter((x) => Number(x.diaRegistro) === Number(i) && Number(x.mesRegistro) === Number(mes) && Number(x.anoRegistro) === Number(ano) && x.matricula === matricula)
+                    .map((y, indice) => {
+                        return { ...y, tipoMarcacao: indice % 2 === 0 ? 'Entrada' : 'Saida' };
+                    })
             };
 
             resultado.push(dados);
