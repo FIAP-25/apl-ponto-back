@@ -18,7 +18,11 @@ export class PontoController {
         if (body) {
             const registroPonto = await this.pontoUseCase.marcarPonto(body, body.matricula);
             return registroPonto;
+
+            //return ok(registroPonto, res);
         }
         return null;
+
+        //return unauthorized(res);
     }
 }

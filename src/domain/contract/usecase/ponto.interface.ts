@@ -3,5 +3,5 @@ import { RegistroPontoOutput } from '@/infrastructure/dto/ponto/registroPonto.dt
 
 export abstract class IPontoUseCase {
     abstract marcarPonto(input: MarcarPontoInput, matricula: string): Promise<MarcarPontoOutput>;
-    abstract obterRegistrosPorMes(mes: number, matricula: string): Promise<RegistroPontoOutput[]>;
+    abstract obterRegistrosPorMes(mes: number, ano: number, matricula: string): Promise<RegistroPontoOutput[]>;
 }

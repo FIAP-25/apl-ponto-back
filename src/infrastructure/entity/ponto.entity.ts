@@ -34,8 +34,23 @@ export class PontoEntity {
     })
     longitude: string;
 
-    @CreateDateColumn()
-    dataRegistro: Date;
+    @Column()
+    diaRegistro: number;
+
+    @Column()
+    mesRegistro: number;
+
+    @Column()
+    anoRegistro: number;
+
+    @Column()
+    horaRegistro: number;
+
+    @Column()
+    minutoRegistro: number;
+
+    @Column()
+    segundoRegistro: number;
 
     @CreateDateColumn()
     dataCadastro: Date;

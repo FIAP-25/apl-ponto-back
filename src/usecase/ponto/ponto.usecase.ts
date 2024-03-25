@@ -3,8 +3,9 @@ import { IPontoRepository } from '@/domain/contract/repository/ponto.interface';
 import { IPontoUseCase } from '@/domain/contract/usecase/ponto.interface';
 import { Ponto } from '@/domain/entity/ponto.model';
 import { MarcarPontoInput, MarcarPontoOutput } from '@/infrastructure/dto/ponto/marcarPonto.dto';
-import { RegistroPontoOutput } from '@/infrastructure/dto/ponto/registroPonto.dto';
+import { RegistroDetalhesOutput, RegistroPontoOutput } from '@/infrastructure/dto/ponto/registroPonto.dto';
 import { Injectable } from '@nestjs/common';
+import dayjs from 'dayjs';
 
 @Injectable()
 export class PontoUseCase implements IPontoUseCase {
@@ -18,11 +19,21 @@ export class PontoUseCase implements IPontoUseCase {
         return mapper.map(pontoSalvo, Ponto, MarcarPontoOutput);
     }
 
-    async obterRegistrosPorMes(mes: number, matricula: string): Promise<RegistroPontoOutput[]> {
-        const registros = await this._pontoRepository.findByMonth(mes, matricula);
+    async obterRegistrosPorMes(mes: number, ano: number, matricula: string): Promise<RegistroPontoOutput[]> {
+        const diaInicial = 1;
+        const diaFinal = dayjs().month(mes).endOf('month').date();
 
-        const resultado = new RegistroPontoOutput();
+        const resultado: RegistroPontoOutput[] = [];
 
-        return [resultado];
+        for (let i = diaInicial; i <= diaFinal; i++) {
+            const dados = {
+                data: dayjs().date(i).month(mes).year(ano).toDate(),
+                registros: mapper.mapArray(await this._pontoRepository.findByDate(i, mes, ano, matricula), Ponto, RegistroDetalhesOutput)
+            };
+
+            resultado.push(dados);
+        }
+
+        return resultado;
     }
 }

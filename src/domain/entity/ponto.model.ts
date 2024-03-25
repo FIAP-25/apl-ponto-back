@@ -19,5 +19,25 @@ export class Ponto {
 
     @AutoMap()
     @ApiProperty({ required: true })
-    dataRegistro: Date;
+    diaRegistro: number;
+
+    @AutoMap()
+    @ApiProperty({ required: true })
+    mesRegistro: number;
+
+    @AutoMap()
+    @ApiProperty({ required: true })
+    anoRegistro: number;
+
+    @AutoMap()
+    @ApiProperty({ required: true })
+    horaRegistro: number;
+
+    @AutoMap()
+    @ApiProperty({ required: true })
+    minutoRegistro: number;
+
+    @AutoMap()
+    @ApiProperty({ required: true })
+    segundoRegistro: number;
 }

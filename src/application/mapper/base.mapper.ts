@@ -5,6 +5,7 @@ import { MarcarPontoInput, MarcarPontoOutput } from '@/infrastructure/dto/ponto/
 import { PontoEntity } from '@/infrastructure/entity/ponto.entity';
 import { classes } from '@automapper/classes';
 import { createMap, createMapper, forMember, mapFrom, typeConverter } from '@automapper/core';
+import dayjs from 'dayjs';
 
 export const mapper = createMapper({
     strategyInitializer: classes()
@@ -39,8 +40,28 @@ createMap(
     Ponto,
     typeConverter(String, Number, (str) => parseInt(str)),
     forMember(
-        (destination) => destination.dataRegistro,
-        mapFrom(() => new Date())
+        (destination) => destination.diaRegistro,
+        mapFrom(() => dayjs().date())
+    ),
+    forMember(
+        (destination) => destination.mesRegistro,
+        mapFrom(() => dayjs().month() + 1)
+    ),
+    forMember(
+        (destination) => destination.anoRegistro,
+        mapFrom(() => dayjs().year())
+    ),
+    forMember(
+        (destination) => destination.horaRegistro,
+        mapFrom(() => dayjs().hour())
+    ),
+    forMember(
+        (destination) => destination.minutoRegistro,
+        mapFrom(() => dayjs().minute())
+    ),
+    forMember(
+        (destination) => destination.segundoRegistro,
+        mapFrom(() => dayjs().second())
     )
 );
 
