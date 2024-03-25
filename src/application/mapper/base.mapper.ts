@@ -46,7 +46,7 @@ createMap(
     ),
     forMember(
         (destination) => destination.mesRegistro,
-        mapFrom(() => dayjs().month())
+        mapFrom(() => dayjs().month() + 1)
     ),
     forMember(
         (destination) => destination.anoRegistro,
